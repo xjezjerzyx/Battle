@@ -1,14 +1,16 @@
 from classes.game import Person, bcolors
 from classes.magic import Spell
 
-#Black magic
+# Black magic
 fire = Spell("Fire", 10, 100, "black")
 thunder = Spell("Thunder", 10, 100, "black")
 blizzard = Spell("Blizzard", 10, 100, "black")
 meteor = Spell("Meteor", 20, 200, "black")
 quake = Spell("Quake", 12, 120, "black")
 
-#Wykład 40 5:50 - koniec oglądania
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# Wykład 40 5:50 - koniec oglądania
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 magic = [{"name": "Fire", "cost": 10, "dmg": 100},
          {"name": "Thunder", "cost": 12, "dmg": 80},
@@ -52,8 +54,6 @@ while running:
         enemy.take_damage(magic_dmg)
         print(bcolors.OKBLUE + "\n " + spell + " deals " + str(magic_dmg), "points of damage" + bcolors.ENDC)
 
-
-
     enemy_choice = 1
 
     enemy_dmg = enemy.generate_damage()
@@ -74,7 +74,7 @@ while running:
     else:
         running = True
 
-    #running = False
+    # running = False
 
 
 '''
