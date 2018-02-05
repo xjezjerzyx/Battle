@@ -1,4 +1,5 @@
 import random
+from .magic import Spell
 
 
 class bcolors:
@@ -64,7 +65,7 @@ class Person:
         i = 1
         print(bcolors.OKBLUE + bcolors.BOLD + "Magic" + bcolors.ENDC)
         for spell in self.magic:
-            print(str(i) + ":", spell["name"], "(cost: ", str(spell["cost"]) + ")")
+            print(str(i) + ":", spell.name, "(cost: ", str(spell.cost) + ")")
             i += 1
 
 

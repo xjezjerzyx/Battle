@@ -8,16 +8,21 @@ blizzard = Spell("Blizzard", 10, 100, "black")
 meteor = Spell("Meteor", 20, 200, "black")
 quake = Spell("Quake", 12, 120, "black")
 
+# Create white magic
+cure = Spell("Cure", 12, 120, "white")
+cura = Spell("Cura", 18, 200, "white")
+
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 # Wykład 40 5:50 - koniec oglądania
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+#
+# magic = [{"name": "Fire", "cost": 10, "dmg": 100},
+#          {"name": "Thunder", "cost": 12, "dmg": 80},
+#          {"name": "Blizzard", "cost": 10, "dmg": 180}]
 
-magic = [{"name": "Fire", "cost": 10, "dmg": 100},
-         {"name": "Thunder", "cost": 12, "dmg": 80},
-         {"name": "Blizzard", "cost": 10, "dmg": 180}]
-
-player = Person(460, 65, 60, 34, magic)
-enemy = Person(1200, 65, 45, 25, magic)
+# initiate people
+player = Person(460, 65, 60, 34, [fire, thunder, blizzard, meteor, quake, cure, cura])
+enemy = Person(1200, 65, 45, 25, [])
 
 running = True
 i = 0
@@ -37,22 +42,26 @@ while running:
         dmg = player.generate_damage()
         enemy.take_damage(dmg)
         print("You attacked for ", dmg)
-    elif index ==1:
+    elif index == 1:
         player.choose_magic()
         magic_choice = int( input("Choose magic: ")) - 1
-        magic_dmg = player.generate_spell_damage(magic_choice)
-        spell = player.get_spell_name(magic_choice)
-        cost = player.get_spell_mp_cost(magic_choice)
 
+        # magic_dmg = player.generate_spell_damage(magic_choice)
+        # spell = player.get_spell_name(magic_choice)
+        # cost = player.get_spell_mp_cost(magic_choice)
+
+        spell = player.magic[magic_choice]
+        magic_dmg = spell.generate_damage()
+        # magic_dmg = player.magic[magic_choice].generate_damage()
         current_mp = player.get_mp()
 
-        if cost > current_mp:
+        if spell.cost > current_mp:
             print(bcolors.FAIL + "\nNot enough MP\n" + bcolors.ENDC)
             continue
 
-        player.reduce_mp(cost)
+        player.reduce_mp(spell.cost)
         enemy.take_damage(magic_dmg)
-        print(bcolors.OKBLUE + "\n " + spell + " deals " + str(magic_dmg), "points of damage" + bcolors.ENDC)
+        print(bcolors.OKBLUE + "\n " + spell.name + " deals " + str(magic_dmg), "points of damage" + bcolors.ENDC)
 
     enemy_choice = 1
 
