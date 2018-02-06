@@ -32,8 +32,10 @@ grenade = Item("Grenade", "attack", "Deals 500 damage", 500)
 #          {"name": "Blizzard", "cost": 10, "dmg": 180}]
 
 # initiate people
-player_spells =  [fire, thunder, blizzard, meteor, quake, cure, cura]
-player_items = [potion, hipotion, superpotion, elixer, hielixer, grenade]
+player_spells = [fire, thunder, blizzard, meteor, quake, cure, cura]
+player_items = [{"item": potion, "quantity": 15}, {"item": hipotion, "quantity": 5},
+                {"item": superpotion, "quantity": 5}, {"item": elixer, "quantity": 5},
+                {"item": hielixer, "quantity": 2}, {"item": grenade, "quantity": 4}]
 
 player = Person(460, 65, 60, 34, player_spells, player_items)
 enemy = Person(1200, 65, 45, 25, player_spells, player_items)
@@ -60,7 +62,7 @@ while running:
         player.choose_magic()
         magic_choice = int( input("Choose magic: ")) - 1
 
-        if item_choice == -1:
+        if magic_choice == -1:
             continue
 
         # magic_dmg = player.generate_spell_damage(magic_choice)
@@ -91,7 +93,13 @@ while running:
         if item_choice == -1:
             continue
 
-        item = player.items[item_choice]
+        item = player.items[item_choice]["item"]
+
+        if player.items[item_choice]["quantity"] == 0:
+            print(bcolors.FAIL + "\nNo more items left..." + bcolors.ENDC)
+            continue
+
+        player.items[item_choice]["quantity"] -= 1
 
         if item.type == "potion":
             player.heal(item.prop)
