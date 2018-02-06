@@ -14,7 +14,8 @@ class bcolors:
 
 
 class Person:
-    def __init__(self, hp, mp, atk, df, magic, items):
+    def __init__(self, name, hp, mp, atk, df, magic, items):
+        self.name = name
         self.maxhp = hp
         self.hp = hp
         self.maxmp = mp
@@ -76,5 +77,9 @@ class Person:
             print("    " + str(i) + ".", item["item"].name + ":", item["item"].description, " (x" + str(item["quantity"])+")")
             i += 1
 
+    def get_stats(self):
+        print("                      _________________________           __________")
+        print(bcolors.BOLD + self.name + ": " + self.hp + "/" + self.maxhp + "    |" + bcolors.OKGREEN + "████████████████|" + bcolors.ENDC
+              + bcolors.BOLD + "   " + self.mp + "/" + self.maxhp + " |" + bcolors.OKBLUE + "██████" + bcolors.ENDC + "|")
 
 
