@@ -75,7 +75,7 @@ while running:
         choice = input("Choose action: ")
         index = int(choice) - 1
         # print("You chose", index)
-        #print("You choose", player.get_spell_name(int(choice)))
+        # print("You choose", player.get_spell_name(int(choice)))
 
         if index == 0:
             dmg = player.generate_damage()
